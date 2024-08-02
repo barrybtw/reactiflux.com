@@ -6,6 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import { NavigationBar } from "@/components/navigation-bar";
 
+import Providers from "./providers";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,12 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body
-        className={cn(" antialiased bg-background text-white", inter.className)}
-      >
-        <NavigationBar />
-        {children}
-        <Toaster />
+      <body className={cn(" antialiased bg-background ", inter.className)}>
+        <Providers>
+          <NavigationBar />
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
