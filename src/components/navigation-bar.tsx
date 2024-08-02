@@ -1,5 +1,16 @@
+"use client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 
 type Link = {
   href: string;
@@ -37,6 +48,7 @@ export function NavigationBar() {
             return (
               <Link
                 href={href}
+                key={href}
                 className="hover:text-white text-gray-400 transition-colors duration-300 font-poppins"
               >
                 {label}
@@ -44,6 +56,31 @@ export function NavigationBar() {
             );
           })}
         </ul>
+        <Sheet>
+          <SheetTrigger>
+            <button className="md:hidden block">
+              <img src="/burger.svg" height={32} width={32} alt="burger menu" />
+            </button>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle className="text-white">Navigation</SheetTitle>
+            </SheetHeader>
+            <ul className="flex flex-col gap-8 py-8">
+              {links.map(({ href, label }) => {
+                return (
+                  <Link
+                    href={href}
+                    key={href}
+                    className="text-gray-300 hover:text-white transition-colors duration-300 font-poppins"
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
+            </ul>
+          </SheetContent>
+        </Sheet>
       </nav>
     </>
   );
